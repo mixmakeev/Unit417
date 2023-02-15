@@ -1,56 +1,55 @@
 ﻿using System;
 using static System.Net.Mime.MediaTypeNames;
+using System.Text;
+
 
 class Program
 {
-    public static void Main(string[] args)
+    static void Main(string[] args)
     {
-        Console.WriteLine("Цикл do");
-        var i = 0;
-        while (i < 5)
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        var enc1251 = Encoding.GetEncoding(1251);
+        System.Console.OutputEncoding = System.Text.Encoding.UTF8;
+        System.Console.InputEncoding = enc1251;
 
-        { 
-            Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы или stop для выхода.");
-            Console.WriteLine("Iteration {0}", i);
-            var text = Console.ReadLine();
-            switch (text)
+        for (int k = 0; k < 3; k++)
+        {
+            (string FirstName, string LastName, string Login, int LoginLenght, bool HasPet, int Age, string PetName, string[] favcolors) User;
+
+            Console.WriteLine("Введите имя");
+            User.FirstName = Console.ReadLine();
+
+            Console.WriteLine("Введите фамилию");
+            User.LastName = Console.ReadLine();
+
+            Console.WriteLine("Введите логин");
+            User.Login = Console.ReadLine();
+
+            User.LoginLenght = User.Login.Length;
+
+            Console.WriteLine("Есть ли у Вас животное? (Да/Нет)");
+            var result = Console.ReadLine();
+
+            if (result == "Да")
             {
-                case "red":
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.Black;
-
-                    Console.WriteLine("Your color is Red!");
-                    break;
-
-                case "green":
-                    Console.BackgroundColor = ConsoleColor.Green;
-                    Console.ForegroundColor = ConsoleColor.Black;
-
-                    Console.WriteLine("Your color is Green!");
-                    break;
-
-                case "yellow":
-                    Console.BackgroundColor = ConsoleColor.Cyan;
-                    Console.ForegroundColor = ConsoleColor.Black;
-
-                    Console.WriteLine("Your color is Cyan!");
-                    break;
-
-                default:
-                    Console.BackgroundColor = ConsoleColor.Yellow;
-                    Console.ForegroundColor = ConsoleColor.Red;
-
-                    Console.WriteLine("Неверный цвет!");
-                    break;
-
+                User.HasPet = true;
+                Console.WriteLine("Введите имя питомца");
+                User.PetName = Console.ReadLine();
             }
-            i++;
-                    if (text == "stop")
-                    {
-                Console.WriteLine("цикл остановлен");
-
-                break;
+            else
+            {
+                User.HasPet = false;
+                User.PetName = null;
             }
-        } 
+            Console.WriteLine("Введите Ваш возраст");
+            User.Age = Convert.ToInt32(Console.ReadLine());
+
+            User.favcolors = new string[3];
+            Console.WriteLine("Введите Ваши три любимых цвета");
+            for (int i = 0; i < User.favcolors.Length; i++)
+            {
+                User.favcolors[i] = Console.ReadLine();
+            }
+        }
     }
 }
