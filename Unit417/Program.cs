@@ -12,6 +12,7 @@ class Program
         System.Console.OutputEncoding = System.Text.Encoding.UTF8;
         System.Console.InputEncoding = enc1251;
 
+
         for (int k = 0; k < 3; k++)
         {
             (string FirstName, string LastName, string Login, int LoginLenght, bool HasPet, int Age, string PetName, string[] favcolors) User;
