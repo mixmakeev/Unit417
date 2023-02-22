@@ -30,6 +30,7 @@ class MainClass
         {
             modif = modif.Remove(0, 2);
         }
+
         if (deep < 16)
         {
             Console.BackgroundColor = (ConsoleColor)deep;
